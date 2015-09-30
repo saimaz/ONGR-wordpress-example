@@ -17,6 +17,13 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new AppBundle\AppBundle(),
+
+            new ONGR\ElasticsearchBundle\ONGRElasticsearchBundle(),
+            new ONGR\RouterBundle\ONGRRouterBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle(),
+            new ONGR\ApiBundle\ONGRApiBundle(),
+
+            new WordpressBundle\WordpressBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

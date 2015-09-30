@@ -1,3 +1,8 @@
+
+ongr_api_routing:
+    resource: @ONGRApiBundle/Resources/config/routing.yml
+    prefix: /api
+
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation

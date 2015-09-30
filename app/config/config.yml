@@ -78,3 +78,45 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+
+#---------------------
+
+ongr_elasticsearch:
+    connections:
+        default:
+            hosts:
+                - { host: 127.0.0.1:9200 }
+            index_name: wordpress
+            settings:
+                number_of_shards: 2
+                number_of_replicas: 1
+                index:
+                    refresh_interval: -1
+                analysis: ~
+
+    managers:
+        default:
+            connection: default
+            debug: "%kernel.debug%"
+            mappings:
+                - WordpressBundle
+
+ongr_router:
+    es_manager: default
+    seo_routes:
+        content:
+            _route: ongr_content
+            _default_route: ongr_content
+            _id_param: document
+            _controller: WordpressBundle:Content:document
+
+ongr_api:
+    default_encoding: json
+    versions:
+        v1:
+            endpoints:
+                default:
+                    manager: es.manager.default
+                    documents:
+                        - WordpressBundle:Content
